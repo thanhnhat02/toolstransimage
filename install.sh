@@ -30,7 +30,7 @@ echo ""
 info "Installing system dependencies …"
 sudo apt-get update -qq
 sudo apt-get install -y \
-    python3.12 python3.12-venv python3.12-dev \
+    python3 python3-venv python3-dev \
     python3-pip \
     libgl1 libglib2.0-0 libsm6 libxrender1 libxext6 \
     libgomp1 \
@@ -43,7 +43,7 @@ success "System dependencies installed"
 
 # ── Python virtual environment ───────────────────────────────────────── #
 info "Creating Python virtual environment in .venv …"
-python3.12 -m venv "$VENV_DIR"
+python3 -m venv "$VENV_DIR"
 source "$VENV_DIR/bin/activate"
 pip install --upgrade pip wheel setuptools
 success "Virtual environment created"
