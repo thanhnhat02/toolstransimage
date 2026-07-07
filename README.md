@@ -104,32 +104,60 @@ toolstransimage/
 
 ---
 
-## 📦 Installation
+## 📦 Installation & Setup
 
-### Quick Install (recommended)
+### 🐧 On Ubuntu (Linux)
 
+#### Quick Install:
 ```bash
 cd toolstransimage
 bash install.sh
 ```
 
-### Manual Install
-
+#### Running:
 ```bash
-# 1. Create virtual environment
-python3.12 -m venv .venv
-source .venv/bin/activate
-
-# 2. Install PyTorch (GPU)
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run
-python main.py
+./run.sh
 ```
 
+---
+
+### 🪟 On Windows
+
+#### Prerequisites:
+1. Download and install [Python 3.10 or 3.12](https://www.python.org/downloads/) (Make sure to check the box **"Add Python to PATH"** during installation).
+2. Download and install [git](https://git-scm.com/downloads) (optional, or download this repository as a ZIP).
+
+#### Quick Install & Run:
+1. Extract the downloaded ZIP file of the repository.
+2. Double-click the file **`build_windows.bat`**.
+   - This script will check for Python, set up a virtual environment `.venv`, auto-detect if you have an NVIDIA GPU (to install CUDA 12.1 PyTorch) or CPU, and install all required libraries.
+   - Finally, it will compile and output the Windows executable `.exe` inside `dist/AIImageEnhancer/`.
+
+#### Manual Install (Command Line):
+1. Open PowerShell or Command Prompt in the project folder:
+   ```cmd
+   python -m venv .venv
+   .venv\Scripts\activate
+   ```
+2. Install PyTorch:
+   - For NVIDIA GPU (CUDA 12.1):
+     ```cmd
+     pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+     ```
+   - For CPU-only:
+     ```cmd
+     pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+     ```
+3. Install other requirements:
+   ```cmd
+   pip install -r requirements.txt
+   ```
+4. Run the app:
+   ```cmd
+   python main.py
+   ```
+
+---
 ---
 
 ## 🚀 Usage
@@ -155,6 +183,19 @@ python main.py
 
 ## 🏗 Build Executable
 
+### On Windows (.exe):
+1. Activate virtual environment:
+   ```cmd
+   .venv\Scripts\activate
+   ```
+2. Build executable using PyInstaller spec file:
+   ```cmd
+   pyinstaller ai_enhancer.spec
+   ```
+   - The standalone folder containing the executable will be output in: `dist/AIImageEnhancer/`
+   - Double-click **`AIImageEnhancer.exe`** to run.
+
+### On Ubuntu (Linux binary):
 ```bash
 bash build.sh
 # Output: dist/AIImageEnhancer/
